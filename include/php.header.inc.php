@@ -1,9 +1,9 @@
 <?php
 /**
- * File: php.header.inc.php
- * Author: Alfredo Ramirez
- * Date: 3/12/2013
- * Description: This file contains the PHP header that every other page will use.
+ * @file php.header.inc.php
+ * @brief This file contains the PHP header that every other page will use.
+ * @author Alfredo Ramirez
+ * @date 3/12/2013
  */
 
 // Load general includes.
@@ -15,7 +15,7 @@ require_once('db.functions.inc.php');
 // Load class library.
 spl_autoload_register('classAutoloader');
 
-// Start session.
+// Start the session.
 session_start();
 
 // If user is not logged in, redirect to index.

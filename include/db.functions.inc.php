@@ -1,19 +1,19 @@
 <?php
-/*
- * File: db.functions.inc.php
- * Author: Alfredo Ramirez
- * Date: 02/05/2013
- * Description: Database-specific functions for entire site.
+/**
+ * @file db.functions.inc.php
+ * @brief Database-specific functions for entire site.
+ * @author Alfredo Ramirez
+ * @date 02/05/2013
  */
- 
-/*
+
+/**
  * SQL Query function using PDO prepared statement.
  *
  * @param $sql is an initialized string and valid SQL query.
- * @param $params is an initialized array of strings.
+ * @param $parameters is an initialized array of strings.
  * @returns $query is an executed PDO prepared statement.
  */
-function query($sql, $parameters=false) {  
+function query($sql, $parameters=false) {
     global $dbh;
     
     $query = $dbh->prepare($sql);
@@ -31,7 +31,7 @@ function query($sql, $parameters=false) {
 
 }
 
-/*
+/**
  * Fetches SQL query results.
  *
  * @param $result is a PDO prepared statement.

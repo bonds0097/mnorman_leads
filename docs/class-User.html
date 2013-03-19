@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="generator" content="ApiGen 2.8.0" />
+
+	<title>Class User | Michael Norman - Leads App</title>
+
+	<script type="text/javascript" src="resources/combined.js?1889508232"></script>
+	<script type="text/javascript" src="elementlist.js?337272029"></script>
+	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
+
+</head>
+
+<body>
+<div id="left">
+	<div id="menu">
+		<a href="index.html" title="Overview"><span>Overview</span></a>
+
+
+		<div id="groups">
+			<h3>Namespaces</h3>
+			<ul>
+				<li class="active"><a href="namespace-None.html">None</a>
+						</li>
+				<li><a href="namespace-PHP.html">PHP</a>
+						</li>
+			</ul>
+		</div>
+
+		<hr />
+
+
+		<div id="elements">
+			<h3>Classes</h3>
+			<ul>
+				<li class="active"><a href="class-User.html">User</a></li>
+			</ul>
+
+
+
+			<h3>Exceptions</h3>
+			<ul>
+				<li><a href="class-InvalidPasswordException.html">InvalidPasswordException</a></li>
+				<li><a href="class-InvalidUsernameException.html">InvalidUsernameException</a></li>
+				<li><a href="class-UserAlreadyExistsException.html">UserAlreadyExistsException</a></li>
+			</ul>
+
+
+			<h3>Functions</h3>
+			<ul>
+				<li><a href="function-classAutoloader.html">classAutoloader</a></li>
+				<li><a href="function-fetch.html">fetch</a></li>
+				<li><a href="function-query.html">query</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div id="splitter"></div>
+
+<div id="right">
+<div id="rightInner">
+	<form id="search">
+		<input type="hidden" name="cx" value="" />
+		<input type="hidden" name="ie" value="UTF-8" />
+		<input type="text" name="q" class="text" />
+		<input type="submit" value="Search" />
+	</form>
+
+	<div id="navigation">
+		<ul>
+			<li>
+				<a href="index.html" title="Overview"><span>Overview</span></a>
+			</li>
+			<li>
+				<a href="namespace-None.html" title="Summary of None"><span>Namespace</span></a>
+			</li>
+			<li class="active">
+<span>Class</span>			</li>
+		</ul>
+		<ul>
+			<li>
+				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
+			</li>
+		</ul>
+		<ul>
+		</ul>
+	</div>
+
+<div id="content" class="class">
+	<h1>Class User</h1>
+
+
+	<div class="description">
+	
+<p>User class for app, contains all methods and members related to users.</p>
+
+	</div>
+
+
+
+
+
+
+
+
+
+	<div class="info">
+		
+		
+		
+		
+
+				<b>Author:</b>
+				Alfredo Ramirez<br />
+				<b>Version:</b>
+				1.0 3/12/2013<br />
+		<b>Located at</b> <a href="source-class-User.html#9-298" title="Go to source code">include/classLibrary/User.class.php</a><br />
+	</div>
+
+
+
+	<table class="summary" id="methods">
+	<caption>Methods summary</caption>
+	<tr data-order="__construct" id="___construct">
+
+		<td class="attributes"><code>
+			 public 
+			creates
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-User.html#23-39" title="Go to source code">__construct</a>( <span>mixed <var>$user</var></span>, <span>mixed <var>$username</var></span>, <span>mixed <var>$balance</var></span>, <span>mixed <var>$siteID</var></span>, <span>mixed <var>$admin</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Initialized constructor.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Initialized constructor.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user</var></dt>
+					<dd><code>mixed</code><br>$user is initialized integer.</dd>
+					<dt><var>$username</var></dt>
+					<dd><code>mixed</code><br>$username is initialized string.</dd>
+					<dt><var>$balance</var></dt>
+					<dd><code>mixed</code><br>$balance is initialized decimal.</dd>
+					<dt><var>$siteID</var></dt>
+					<dd><code>mixed</code><br>$siteID is initialized integer.</dd>
+					<dt><var>$admin</var></dt>
+					<dd><code>mixed</code><br>$admin is initialized boolean.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>creates</code><br>User object with all members initialized.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="AutoLogin" id="_AutoLogin">
+
+		<td class="attributes"><code>
+			 public static
+			true
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_AutoLogin">#</a>
+		<code><a href="source-class-User.html#41-77" title="Go to source code">AutoLogin</a>( )</code>
+
+		<div class="description short">
+			
+<p>Attempts to automatically login a user.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Attempts to automatically login a user.</p>
+
+<p>Searches user table for matching autologin string and logs in that user if
+match was found.</p>
+
+
+
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>true</code><br>if autoLogin was successful, false otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="CheckPassword" id="_CheckPassword">
+
+		<td class="attributes"><code>
+			 public static
+			success
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_CheckPassword">#</a>
+		<code><a href="source-class-User.html#79-90" title="Go to source code">CheckPassword</a>( <span>mixed <var>$username</var></span>, <span>mixed <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Verifies user's password matches input.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Verifies user's password matches input.</p>
+
+<p>Looks up user's password in user table and determines whether it matches
+user's input.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>mixed</code><br>$username is an initialized string.</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>mixed</code><br>$password is an initialized string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>success</code><br>or error message.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="Login" id="_Login">
+
+		<td class="attributes"><code>
+			 public static
+			true
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_Login">#</a>
+		<code><a href="source-class-User.html#92-111" title="Go to source code">Login</a>( <span>mixed <var>$user</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Logs in user.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Logs in user.</p>
+
+<p>Logs in a user either after vrifying password or through autologin.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$user</var></dt>
+					<dd><code>mixed</code><br>$username is an initialized User object.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>true</code><br>if login successful, false otherwise.<br />
+				</div>
+
+
+				<h4>See</h4>
+				<div class="list">
+						autoLogin()<br />
+						checkPassword()<br />
+				</div>
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="setPassword" id="_setPassword">
+
+		<td class="attributes"><code>
+			 public 
+			sucess/failure
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_setPassword">#</a>
+		<code><a href="source-class-User.html#113-124" title="Go to source code">setPassword</a>( <span>mixed <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Sets the user's password.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Sets the user's password.</p>
+
+<p>Method to change a user's password. Generates a new salt that is combined
+with input string to generate a new hash as well.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$password</var></dt>
+					<dd><code>mixed</code><br>$password is an initialized string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>sucess/failure</code><br>message.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="NewUser" id="_NewUser">
+
+		<td class="attributes"><code>
+			 public static
+			true
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_NewUser">#</a>
+		<code><a href="source-class-User.html#126-198" title="Go to source code">NewUser</a>( <span>mixed <var>$username</var></span>, <span>mixed <var>$password</var></span>, <span>mixed <var>$balance</var></span>, <span>mixed <var>$siteID</var></span>, <span>mixed <var>$admin</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Creates new user.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Creates new user.</p>
+
+<p>Method to allow administrators to create new users and insert them into
+database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>mixed</code><br>$username is an initialized string.</dd>
+					<dt><var>$password</var></dt>
+					<dd><code>mixed</code><br>$password is an initialized string.</dd>
+					<dt><var>$balance</var></dt>
+					<dd><code>mixed</code><br>$balance is an initialized decimal.</dd>
+					<dt><var>$siteID</var></dt>
+					<dd><code>mixed</code><br>$siteID is an initialized integer.</dd>
+					<dt><var>$admin</var></dt>
+					<dd><code>mixed</code><br>$admin is an initialized boolean.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>true</code><br>if successful, false otherwise.<br />
+				</div>
+
+				<h4>Throws</h4>
+				<div class="list">
+					<code><code><a href="class-InvalidArgumentException.html">InvalidArgumentException</a></code></code><br>if any parameter is the wrong type.<br />
+					<code><code><a href="class-InvalidUsernameException.html">InvalidUsernameException</a></code></code><br>if username is too long or contains invalid characters.<br />
+					<code><code><a href="class-UserAlreadyExistsException.html">UserAlreadyExistsException</a></code></code><br>if user with $username is already in database.<br />
+					<code><code><a href="class-InvalidPasswordException.html">InvalidPasswordException</a></code></code><br>if password is too long or contains invalid characters.<br />
+				</div>
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ValidUsername" id="_ValidUsername">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ValidUsername">#</a>
+		<code><a href="source-class-User.html#200-223" title="Go to source code">ValidUsername</a>( <span>string <var>$username</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks whether input string is a valid username.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks whether input string is a valid username.</p>
+
+<p>Valid usernames begin with a letter and contain only alphanumeric characters
+and the underscore character. MINUSERNAMELENGTH &lt;= length &lt;=
+MAXUSERNAMELENGTH</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>string</code><br>$username is an initialized string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>true if username is valid, false otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="UserExists" id="_UserExists">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_UserExists">#</a>
+		<code><a href="source-class-User.html#225-242" title="Go to source code">UserExists</a>( <span>string <var>$username</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks whether a username is already in the database.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks whether a username is already in the database.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$username</var></dt>
+					<dd><code>string</code><br>$username is a validated username string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>true if user already exists, false otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="ValidPassword" id="_ValidPassword">
+
+		<td class="attributes"><code>
+			 public static
+			boolean
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_ValidPassword">#</a>
+		<code><a href="source-class-User.html#244-269" title="Go to source code">ValidPassword</a>( <span>string <var>$password</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Checks whether a string is a valid password.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Checks whether a string is a valid password.</p>
+
+<p>A string is a valid password if it contains at least one uppercase character,
+one lowercase character, one number, one special character in the set
+{!@#$%^&amp;*()} and if of length &gt;= MINPASSWORDLENGTH and &lt;=
+MAXPASSWORDLENGTH.</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code><br>$password is an initialized string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>boolean</code><br>true if password is valid, false otherwise.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="GenerateHash" id="_GenerateHash">
+
+		<td class="attributes"><code>
+			 public static
+			mixed
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_GenerateHash">#</a>
+		<code><a href="source-class-User.html#271-288" title="Go to source code">GenerateHash</a>( <span>string <var>$password</var></span>, <span>string <var>$salt</var></span> )</code>
+
+		<div class="description short">
+			
+<p>Generates a password hash.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Generates a password hash.</p>
+
+<p>Hashes $salt once and appends it to $password, the combined string is then
+hashed HASTIMES (a global constant).</p>
+
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$password</var></dt>
+					<dd><code>string</code><br>$password is a validated password string.</dd>
+					<dt><var>$salt</var></dt>
+					<dd><code>string</code><br>$salt is pre-generated 20-character salt string.</dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					<code>mixed</code><br>$hash is an SHA1-generated hash.<br />
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="logout" id="_logout">
+
+		<td class="attributes"><code>
+			 public 
+			
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_logout">#</a>
+		<code><a href="source-class-User.html#290-297" title="Go to source code">logout</a>( )</code>
+
+		<div class="description short">
+			
+<p>Logs out current user.</p>
+
+		</div>
+
+		<div class="description detailed hidden">
+			
+<p>Logs out current user.</p>
+
+<p>Destroys autologin cookie if it exists.</p>
+
+
+
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+	<div id="footer">
+		Michael Norman - Leads App API documentation generated by <a href="http://apigen.org">ApiGen 2.8.0</a>
+	</div>
+</div>
+</div>
+</body>
+</html>

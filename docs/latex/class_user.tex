@@ -1,0 +1,388 @@
+\hypertarget{class_user}{\section{User Class Reference}
+\label{class_user}\index{User@{User}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_user_a6795462ff53bc37a7c99481c4cb4b5f6}{\-\_\-\-\_\-construct} (\$user, \$username, \$balance, \$site\-I\-D, \$admin)
+\item 
+\hyperlink{class_user_a3e35c8d3dbb2c513c618a664389e0926}{set\-Password} (\$password)
+\item 
+\hyperlink{class_user_a082405d89acd6835c3a7c7a08a7adbab}{logout} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_user_a9c058a346a08a797dd8df3ecdafa4d64}{Auto\-Login} ()
+\item 
+static \hyperlink{class_user_a3a60c336c7bd080d1945d5f4bc204ec2}{Check\-Password} (\$username, \$password)
+\item 
+static \hyperlink{class_user_a3f3ecd6f91f8c9481453a1d88413f6d0}{Login} (\$user)
+\item 
+static \hyperlink{class_user_aa6458193f8ce8e1ca5384b5e354ded0e}{New\-User} (\$username, \$password, \$balance, \$site\-I\-D, \$admin)
+\item 
+static \hyperlink{class_user_a1b997bee7f3e082a75e739fcb90d8cac}{Valid\-Username} (\$username)
+\item 
+static \hyperlink{class_user_a5a68d9b0c4755a1a15d3801aef20e44f}{User\-Exists} (\$username)
+\item 
+static \hyperlink{class_user_aa354867c8863229e4d62f42d8fbbad61}{Valid\-Password} (\$password)
+\item 
+static \hyperlink{class_user_a6f1cf077fd3545f7d28cd34c26cc7d47}{Generate\-Hash} (\$password, \$salt)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_user_a598ca4e71b15a1313ec95f0df1027ca5}{\$user}
+\item 
+\hyperlink{class_user_a0eb82aa5f81cf845de4b36cd653c42cf}{\$username}
+\item 
+\hyperlink{class_user_ac600cdfc056c66926d1b3f5aff7088a9}{\$balance}
+\item 
+\hyperlink{class_user_a70db0a8c5bfb8523860867c5670cd399}{\$site\-I\-D}
+\item 
+\hyperlink{class_user_ad3b3c64b25fbbb6aec24407e4333aa71}{\$admin}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{class_user}{User} class for app, contains all methods and members related to users.
+
+\begin{DoxyAuthor}{Author}
+Alfredo Ramirez 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\-0 3/12/2013 
+\end{DoxyVersion}
+
+
+Definition at line 15 of file User.\-class.\-php.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_user_a6795462ff53bc37a7c99481c4cb4b5f6}{\index{User@{User}!\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}}
+\index{\-\_\-\-\_\-construct@{\-\_\-\-\_\-construct}!User@{User}}
+\subsubsection[{\-\_\-\-\_\-construct}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-\-\_\-construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$user, }
+\item[{}]{\$username, }
+\item[{}]{\$balance, }
+\item[{}]{\$site\-I\-D, }
+\item[{}]{\$admin}
+\end{DoxyParamCaption}
+)}}\label{class_user_a6795462ff53bc37a7c99481c4cb4b5f6}
+Initialized constructor.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$user} & is initialized integer. \\
+\hline
+{\em \$username} & is initialized string. \\
+\hline
+{\em \$balance} & is initialized decimal. \\
+\hline
+{\em \$site\-I\-D} & is initialized integer. \\
+\hline
+{\em \$admin} & is initialized boolean. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+creates \hyperlink{class_user}{User} object with all members initialized. 
+\end{DoxyReturn}
+
+
+Definition at line 33 of file User.\-class.\-php.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_user_a9c058a346a08a797dd8df3ecdafa4d64}{\index{User@{User}!Auto\-Login@{Auto\-Login}}
+\index{Auto\-Login@{Auto\-Login}!User@{User}}
+\subsubsection[{Auto\-Login}]{\setlength{\rightskip}{0pt plus 5cm}static Auto\-Login (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_a9c058a346a08a797dd8df3ecdafa4d64}
+Attempts to automatically login a user.
+
+Searches user table for matching autologin string and logs in that user if match was found.
+
+\begin{DoxyReturn}{Returns}
+true if auto\-Login was successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 48 of file User.\-class.\-php.
+
+\hypertarget{class_user_a3a60c336c7bd080d1945d5f4bc204ec2}{\index{User@{User}!Check\-Password@{Check\-Password}}
+\index{Check\-Password@{Check\-Password}!User@{User}}
+\subsubsection[{Check\-Password}]{\setlength{\rightskip}{0pt plus 5cm}static Check\-Password (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{}]{\$password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_a3a60c336c7bd080d1945d5f4bc204ec2}
+Verifies user's password matches input.
+
+Looks up user's password in user table and determines whether it matches user's input.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$username} & is an initialized string. \\
+\hline
+{\em \$password} & is an initialized string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+success or error message. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file User.\-class.\-php.
+
+\hypertarget{class_user_a6f1cf077fd3545f7d28cd34c26cc7d47}{\index{User@{User}!Generate\-Hash@{Generate\-Hash}}
+\index{Generate\-Hash@{Generate\-Hash}!User@{User}}
+\subsubsection[{Generate\-Hash}]{\setlength{\rightskip}{0pt plus 5cm}static Generate\-Hash (
+\begin{DoxyParamCaption}
+\item[{}]{\$password, }
+\item[{}]{\$salt}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_a6f1cf077fd3545f7d28cd34c26cc7d47}
+Generates a password hash.
+
+Hashes \$salt once and appends it to \$password, the combined string is then hashed H\-A\-S\-T\-I\-M\-E\-S (a global constant).
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$password} & is a validated password string. \\
+\hline
+string & {\em \$salt} & is pre-\/generated 20-\/character salt string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$hash is an S\-H\-A1-\/generated hash. 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file User.\-class.\-php.
+
+\hypertarget{class_user_a3f3ecd6f91f8c9481453a1d88413f6d0}{\index{User@{User}!Login@{Login}}
+\index{Login@{Login}!User@{User}}
+\subsubsection[{Login}]{\setlength{\rightskip}{0pt plus 5cm}static Login (
+\begin{DoxyParamCaption}
+\item[{}]{\$user}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_a3f3ecd6f91f8c9481453a1d88413f6d0}
+Logs in user.
+
+Logs in a user either after vrifying password or through autologin.
+
+\begin{DoxySeeAlso}{See Also}
+auto\-Login() 
+
+check\-Password() 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}{Parameters}
+{\em \$username} & is an initialized \hyperlink{class_user}{User} object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if login successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file User.\-class.\-php.
+
+\hypertarget{class_user_a082405d89acd6835c3a7c7a08a7adbab}{\index{User@{User}!logout@{logout}}
+\index{logout@{logout}!User@{User}}
+\subsubsection[{logout}]{\setlength{\rightskip}{0pt plus 5cm}logout (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_user_a082405d89acd6835c3a7c7a08a7adbab}
+Logs out current user.
+
+Destroys autologin cookie if it exists. 
+
+Definition at line 295 of file User.\-class.\-php.
+
+\hypertarget{class_user_aa6458193f8ce8e1ca5384b5e354ded0e}{\index{User@{User}!New\-User@{New\-User}}
+\index{New\-User@{New\-User}!User@{User}}
+\subsubsection[{New\-User}]{\setlength{\rightskip}{0pt plus 5cm}static New\-User (
+\begin{DoxyParamCaption}
+\item[{}]{\$username, }
+\item[{}]{\$password, }
+\item[{}]{\$balance, }
+\item[{}]{\$site\-I\-D, }
+\item[{}]{\$admin}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_aa6458193f8ce8e1ca5384b5e354ded0e}
+Creates new user.
+
+Method to allow administrators to create new users and insert them into database.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$username} & is an initialized string. \\
+\hline
+{\em \$password} & is an initialized string. \\
+\hline
+{\em \$balance} & is an initialized decimal. \\
+\hline
+{\em \$site\-I\-D} & is an initialized integer. \\
+\hline
+{\em \$admin} & is an initialized boolean. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\-Argument\-Exception} & if any parameter is the wrong type. \\
+\hline
+{\em \hyperlink{class_invalid_username_exception}{Invalid\-Username\-Exception}} & if username is too long or contains invalid characters. \\
+\hline
+{\em \hyperlink{class_user_already_exists_exception}{User\-Already\-Exists\-Exception}} & if user with \$username is already in database. \\
+\hline
+{\em \hyperlink{class_invalid_password_exception}{Invalid\-Password\-Exception}} & if password is too long or contains invalid characters. \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyReturn}{Returns}
+true if successful, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 142 of file User.\-class.\-php.
+
+\hypertarget{class_user_a3e35c8d3dbb2c513c618a664389e0926}{\index{User@{User}!set\-Password@{set\-Password}}
+\index{set\-Password@{set\-Password}!User@{User}}
+\subsubsection[{set\-Password}]{\setlength{\rightskip}{0pt plus 5cm}set\-Password (
+\begin{DoxyParamCaption}
+\item[{}]{\$password}
+\end{DoxyParamCaption}
+)}}\label{class_user_a3e35c8d3dbb2c513c618a664389e0926}
+Sets the user's password.
+
+Method to change a user's password. Generates a new salt that is combined with input string to generate a new hash as well.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$password} & is an initialized string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+sucess/failure message. 
+\end{DoxyReturn}
+
+
+Definition at line 122 of file User.\-class.\-php.
+
+\hypertarget{class_user_a5a68d9b0c4755a1a15d3801aef20e44f}{\index{User@{User}!User\-Exists@{User\-Exists}}
+\index{User\-Exists@{User\-Exists}!User@{User}}
+\subsubsection[{User\-Exists}]{\setlength{\rightskip}{0pt plus 5cm}static User\-Exists (
+\begin{DoxyParamCaption}
+\item[{}]{\$username}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_a5a68d9b0c4755a1a15d3801aef20e44f}
+Checks whether a username is already in the database.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & is a validated username string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if user already exists, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 231 of file User.\-class.\-php.
+
+\hypertarget{class_user_aa354867c8863229e4d62f42d8fbbad61}{\index{User@{User}!Valid\-Password@{Valid\-Password}}
+\index{Valid\-Password@{Valid\-Password}!User@{User}}
+\subsubsection[{Valid\-Password}]{\setlength{\rightskip}{0pt plus 5cm}static Valid\-Password (
+\begin{DoxyParamCaption}
+\item[{}]{\$password}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_aa354867c8863229e4d62f42d8fbbad61}
+Checks whether a string is a valid password.
+
+A string is a valid password if it contains at least one uppercase character, one lowercase character, one number, one special character in the set \{!\#\$\%$^\wedge$\&$\ast$()\} and if of length $>$= M\-I\-N\-P\-A\-S\-S\-W\-O\-R\-D\-L\-E\-N\-G\-T\-H and $<$= M\-A\-X\-P\-A\-S\-S\-W\-O\-R\-D\-L\-E\-N\-G\-T\-H.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$password} & is an initialized string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if password is valid, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 254 of file User.\-class.\-php.
+
+\hypertarget{class_user_a1b997bee7f3e082a75e739fcb90d8cac}{\index{User@{User}!Valid\-Username@{Valid\-Username}}
+\index{Valid\-Username@{Valid\-Username}!User@{User}}
+\subsubsection[{Valid\-Username}]{\setlength{\rightskip}{0pt plus 5cm}static Valid\-Username (
+\begin{DoxyParamCaption}
+\item[{}]{\$username}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{class_user_a1b997bee7f3e082a75e739fcb90d8cac}
+Checks whether input string is a valid username.
+
+Valid usernames begin with a letter and contain only alphanumeric characters and the underscore character. M\-I\-N\-U\-S\-E\-R\-N\-A\-M\-E\-L\-E\-N\-G\-T\-H $<$= length $<$= M\-A\-X\-U\-S\-E\-R\-N\-A\-M\-E\-L\-E\-N\-G\-T\-H
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$username} & is an initialized string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean true if username is valid, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 209 of file User.\-class.\-php.
+
+
+
+\subsection{Field Documentation}
+\hypertarget{class_user_ad3b3c64b25fbbb6aec24407e4333aa71}{\index{User@{User}!\$admin@{\$admin}}
+\index{\$admin@{\$admin}!User@{User}}
+\subsubsection[{\$admin}]{\setlength{\rightskip}{0pt plus 5cm}\$admin\hspace{0.3cm}{\ttfamily [private]}}}\label{class_user_ad3b3c64b25fbbb6aec24407e4333aa71}
+Whether user is admin. 
+
+Definition at line 21 of file User.\-class.\-php.
+
+\hypertarget{class_user_ac600cdfc056c66926d1b3f5aff7088a9}{\index{User@{User}!\$balance@{\$balance}}
+\index{\$balance@{\$balance}!User@{User}}
+\subsubsection[{\$balance}]{\setlength{\rightskip}{0pt plus 5cm}\$balance\hspace{0.3cm}{\ttfamily [private]}}}\label{class_user_ac600cdfc056c66926d1b3f5aff7088a9}
+Points balance of user. 
+
+Definition at line 19 of file User.\-class.\-php.
+
+\hypertarget{class_user_a70db0a8c5bfb8523860867c5670cd399}{\index{User@{User}!\$site\-I\-D@{\$site\-I\-D}}
+\index{\$site\-I\-D@{\$site\-I\-D}!User@{User}}
+\subsubsection[{\$site\-I\-D}]{\setlength{\rightskip}{0pt plus 5cm}\$site\-I\-D\hspace{0.3cm}{\ttfamily [private]}}}\label{class_user_a70db0a8c5bfb8523860867c5670cd399}
+Site I\-D of user. 
+
+Definition at line 20 of file User.\-class.\-php.
+
+\hypertarget{class_user_a598ca4e71b15a1313ec95f0df1027ca5}{\index{User@{User}!\$user@{\$user}}
+\index{\$user@{\$user}!User@{User}}
+\subsubsection[{\$user}]{\setlength{\rightskip}{0pt plus 5cm}\$user\hspace{0.3cm}{\ttfamily [private]}}}\label{class_user_a598ca4e71b15a1313ec95f0df1027ca5}
+\hyperlink{class_user}{User} I\-D. 
+
+Definition at line 17 of file User.\-class.\-php.
+
+\hypertarget{class_user_a0eb82aa5f81cf845de4b36cd653c42cf}{\index{User@{User}!\$username@{\$username}}
+\index{\$username@{\$username}!User@{User}}
+\subsubsection[{\$username}]{\setlength{\rightskip}{0pt plus 5cm}\$username\hspace{0.3cm}{\ttfamily [private]}}}\label{class_user_a0eb82aa5f81cf845de4b36cd653c42cf}
+Username. 
+
+Definition at line 18 of file User.\-class.\-php.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+C\-:/xampp/htdocs/mnorman\-\_\-leads/include/class\-Library/\hyperlink{_user_8class_8php}{User.\-class.\-php}\end{DoxyCompactItemize}

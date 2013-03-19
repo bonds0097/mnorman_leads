@@ -11,12 +11,21 @@ $options = array(
   PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
 ); 
 
+$local = true; 
+
 // Database details.
-$db_host = "localhost"; 
-$db_user = "mnorman";
-$db_pass = "password";
-$db_name = "mnorman_leads";
+if ($local) {
+    $db_host = "localhost"; 
+    $db_user = "mnorman";
+    $db_pass = "password";
+    $db_name = "mnorman_leads";
+} else {
+    $db_host = "localhost"; 
+    $db_user = "onther7_mnorman";
+    $db_pass = "Password123!";
+    $db_name = "onther7_mnorman_leads";
+}
 
 // Create new DB object.
-$db = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass, $options);
+$dbh = new PDO("mysql:host=$db_host;dbname=$db_name", $db_user, $db_pass, $options);
 ?>

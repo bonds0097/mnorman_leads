@@ -15,5 +15,10 @@ DEFINE('ROOTPATH', $_SERVER['DOCUMENT_ROOT'] . $siteFolder);
 
 // Define some security constants.
 DEFINE('HASHTIMES', 64000);
-DEFINE('MAXPASSWORDLENGTH', 32)
+DEFINE('MINPASSWORDLENGTH', 8);
+DEFINE('MAXPASSWORDLENGTH', 32);
+DEFINE('MINUSERNAMELENGTH', 6);
+DEFINE('MAXUSERNAMELENGTH', 16);
+DEFINE('USERNAMEFORMAT', '/^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$/');
+DEFINE('PASSWORDFORMAT', '/(?=.*[A-Z]+)(?=.*[a-z]+)(?=.*\d+)(?=.*[!@#$%^&\*()]+)/');
 ?>
