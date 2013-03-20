@@ -5,6 +5,7 @@
  * @author Alfredo Ramirez
  * @date 03/12/2013
  */
+// TODO: Add Exception Handling for all logins.
 
 // Include PHP Header.
 require_once('php.header.inc.php');
@@ -32,7 +33,6 @@ if (User::autoLogin()) {
 
 // Check for manual login.
 if (isset($_POST['login'])) {
-    // TODO: Add exception handling.
     $autologin = false;
     if (isset($_POST['autologin'])) {
         $autologin = true;

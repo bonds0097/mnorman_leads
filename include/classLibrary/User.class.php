@@ -234,71 +234,79 @@ class User {
      *
      * Method to allow administrators to create new users and insert them into database.
      *
+     * @see User::ValidateAllUserFields()
      * @param $username is an initialized string.
      * @param $password is an initialized string.
      * @param $balance is an initialized decimal.
      * @param $siteID is an initialized integer.
-     * @param $admin is an initialized boolean.
-     * @throws InvalidArgumentException if any parameter is the wrong type.
-     * @throws InvalidUsernameException if username is too long or contains invalid characters.
-     * @throws UserAlreadyExistsException if user with $username is already in database.
-     * @throws InvalidPasswordException if password is too long or contains invalid characters.
+     * @param $admin is an initialized boolean.     
      * @return true if successful, false otherwise.
      */
     public static function NewUser($username, $password, $balance, $siteID, $admin) {
         // Validate data.
-        // Type Validation
-        if (!filter_var($balance, FILTER_VALIDATE_FLOAT)) {
-            throw new InvalidArgumentException('Call to newUser() failed: ' . $balance . 
-                    ' is not a valid float/double.');
-        }
-        if (!filter_var($siteID, FILTER_VALIDATE_INT)) {
-           throw new InvalidArgumentException('Call to newUser() failed: ' . $siteID . 
-                    ' is not a integer'); 
-        }
-        
-        if (filter_var($admin, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) == NULL) {
-            throw new InvalidArgumentException('Call to newUser() failed: ' . $admin . 
-                    ' is not a boolean'); 
-        }
-        
-        // Username Validation - String Format
-        if (!User::ValidUsername($username)) {
-            throw new InvalidUsernameException('Call to newUser() failed: ' . $username . ' is not a 
-                valid username.');
-        }
-        
-        // Username Validation - Already Exists
-        if (User::UserExists($username)) {
-            throw new UserAlreadyExistsException('Call to newUser() failed: ' . $username . 
-                    ' is already in the system.');
-        }
-        
-        // Password Validation
-        if (!User::ValidPassword($password)) {
-            throw new InvalidPasswordException('Call to newUser() failed: ' . $password . ' is not a 
-                valid password.');
-        }
-        
-        // Generate salt and hash.
-        $salt = mcrypt_create_iv(20, MCRYPT_DEV_URANDOM);
-        $hash = User::GenerateHash($password, $salt);
+        if (User::NewUserValidation($username, $password, $balance, $siteID, $admin)) {
+            // Generate salt and hash.
+            $salt = mcrypt_create_iv(20, MCRYPT_DEV_URANDOM);
+            $hash = User::GenerateHash($password, $salt);
 
-        $autologin = mcrypt_create_iv(50, MCRYPT_DEV_URANDOM);
+            $autologin = mcrypt_create_iv(50, MCRYPT_DEV_URANDOM);
 
-        // Create new user in database.
-        $sql = "INSERT INTO user(username, salt, hash, autologin, balance, siteID, admin) 
-            VALUES(:username, :salt, :hash, :autologin, :balance, :siteID, :admin);";
-        
-        $params = array(
-                        ':username'     =>      $username,
-                        ':salt'         =>      $salt,
-                        ':hash'         =>      $hash,
-                        ':autologin'    =>      $autologin,
-                        ':balance'      =>      $balance,
-                        ':siteID'       =>      $siteID,
-                        ':admin'        =>      $admin ? 1: 0
-                        );
+            // Create new user in database.
+            $sql = 'INSERT INTO user(username, salt, hash, autologin, balance, siteID, admin) 
+               VALUES(:username, :salt, :hash, :autologin, :balance, :siteID, :admin);';
+
+            $params = array(
+                ':username' => $username,
+                ':salt' => $salt,
+                ':hash' => $hash,
+                ':autologin' => $autologin,
+                ':balance' => $balance,
+                ':siteID' => $siteID,
+                ':admin' => $admin ? 1 : 0
+            );
+
+            return query($sql, $params);
+        }
+    }
+    
+    /**
+     * Update a user's information.
+     * 
+     * @param string $username is initialized.
+     * @param double $balance is initialized.
+     * @param int $siteID is initialized.
+     * @param boolean $admin is initialized.
+     * @return boolean true if successful, false otherwise.
+     */
+    public function update($username, $balance, $siteID, $admin) {
+        // Validate data.
+        if (User::UserValidation($username, $balance, $siteID, $admin)) {
+            // Update database entry.
+            $sql = 'UPDATE user 
+                SET username = :username, balance = :balance, siteID = :siteID, admin = :admin
+                WHERE user = :user;';
+            
+            $params = array(
+                ':username'     => $username,
+                ':balance'      => $balance,
+                ':siteID'       => $siteID,
+                ':admin'        => $admin,
+                ':user'         => $this->user
+            );
+            
+            return query($sql, $params);
+        }
+    }       
+    
+    /**
+     * Deletes user from database.
+     * 
+     * @return boolean true if successful, false otherwise
+     */
+    public function delete() {
+        // Delete user from database.
+        $sql = 'DELETE FROM user WHERE user = :user;';
+        $params = array(':user' => $this->user);
         
         return query($sql, $params);
     }
@@ -314,13 +322,13 @@ class User {
      */
     public static function ValidUsername($username) {
         // Check username length.
-        if (strlen($username) < MINUSERNAMELENGTH || 
+        if (strlen($username) < MINUSERNAMELENGTH ||
                 strlen($username) > MAXUSERNAMELENGTH) {
             return false;
         }
-        
+
         // TODO: Replace regex with ctype_alnum check instead.
-        $options = array('options' => 
+        $options = array('options' =>
             array('regexp' => USERNAMEFORMAT));
         if (!(filter_var($username, FILTER_VALIDATE_REGEXP, $options))) {
             return false;
@@ -373,6 +381,70 @@ class User {
         } else {
             return true;
         }        
+    }
+    
+    /**
+     * Validate user fields.
+     * 
+     * @param string $username is initialized.
+     * @param double $balance is initialized.
+     * @param int $siteID is initialized.
+     * @param boolean $admin is initialized.
+     * @return boolean true if all fields are valid.
+     * @throws InvalidArgumentException if a field does match expected type.
+     * @throws InvalidUsernameException if $username is not a valid username.
+     */
+    public static function UserValidation($username, $balance, $siteID, $admin) {
+        if (!filter_var($balance, FILTER_VALIDATE_FLOAT)) {
+            throw new InvalidArgumentException('Call to ValidateAllUserFields() failed: ' . 
+                    $balance . ' is not a valid float/double.');
+        }
+        if (!filter_var($siteID, FILTER_VALIDATE_INT)) {
+           throw new InvalidArgumentException('Call to ValidateAllUserFields() failed: ' . $siteID . 
+                    ' is not a integer'); 
+        }
+        
+        if (is_null(filter_var($admin, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE))) {
+            throw new InvalidArgumentException('Call to ValidateAllUserFields() failed: ' . $admin . 
+                    ' is not a boolean'); 
+        }
+        
+        // Username Validation - String Format
+        if (!User::ValidUsername($username)) {
+            throw new InvalidUsernameException('Call to ValidateAllUserFields() failed: ' . 
+                    $username . ' is not a valid username.');
+        }   
+        
+        return true;
+    }
+    
+    /**
+     * Validate new user fields.
+     * 
+     * @param string $username is initialized.
+     * @param string $password is initialized.
+     * @param double $balance is initialized.
+     * @param int $siteID is initialized.
+     * @param boolean $admin is initialized.
+     * @return boolean true if all fields are valid.
+     * @throws UserAlreadyExistsException if user with $username is already in the database.
+     * @throws InvalidPasswordException if $password is not a valid password.
+     */
+    static function NewUserValidation($username, $password, $balance, $siteID, $admin) {
+        if (User::UserValidation($username, $balance, $siteID, $admin)) {
+            // Username Validation - Already Exists
+            if (User::UserExists($username)) {
+                throw new UserAlreadyExistsException('Call to NewUserValidation() failed: ' . 
+                        $username . ' is already in the system.');
+            }
+            // Password Validation
+            if (!User::ValidPassword($password)) {
+                throw new InvalidPasswordException('Call to NewUserValidation() failed: ' . 
+                        $password . ' is not a valid password.');
+            }
+            
+            return true;
+        }
     }
     
     /**
@@ -454,8 +526,14 @@ class User {
      * 
      * @return Array of User objects.
      */
-    public static function GetAllUsers() {
-        $sql = 'SELECT user, username, balance, siteID, admin FROM user;';
+    public static function GetAllUsers($sortType = 'username') {
+        $sql = 'SELECT user, username, balance, siteID, admin FROM user';
+        
+        // Set sorting.
+        if ($sortType == 'username') {
+            $sql .= ' ORDER BY username;';
+        }
+        
         $result = query($sql);
         $result->setFetchMode(PDO::FETCH_CLASS, 'User');
         

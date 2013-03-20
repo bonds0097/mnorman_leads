@@ -5,6 +5,8 @@
  * @author Alfredo Ramirez
  * @date 03/16/2013
  */
+// TODO: Add Exception Handling.
+// TODO: Add userID validation.
 
 // Include PHP Header.
 require_once('php.header.inc.php');
