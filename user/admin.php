@@ -1,18 +1,19 @@
 <?php
-/*
- * File: admin.php
- * Author: Alfredo Ramirez
- * Date: 03/16/2013
- * Description: Admin page for site. Allows admins to modify users.
+/**
+ * @file admin.php
+ * @author Alfredo Ramirez
+ * @date 03/16/2013
+ * @brief Admin page for site. Allows admins to modify users.
  */
 // TODO: Add Exception Handling for all transactions.
 // TODO: Add check for out of range user ID for editUser.
+// TODO: Add ability to toggle users as active/inactive.
 
 // Include PHP Header.
 require_once('php.header.inc.php');
 
 // Include admin functions.
-require_once('/include/admin.functions.inc.php');
+require_once('./include/admin.functions.inc.php');
 
 // Check for admin permission.
 if (!isset($_SESSION['user']) || !$_SESSION['user']->getAdmin()) {
@@ -22,6 +23,13 @@ if (!isset($_SESSION['user']) || !$_SESSION['user']->getAdmin()) {
 // Set initial variables.
 $pageTitle = 'Administration';
 $display = 0;
+
+// This page has 4 displays.
+// $display == 0: User list.
+// $display == 1: Edit user page.
+// $display == 2: Add user confirmation.
+// $display == 3: Delete user confirmation.
+// $display == 4: Message page.
 
 // Check whether an edit user request was submitted.
 // If so, store user in session.
@@ -85,13 +93,6 @@ if (isset($_POST['deleteUserConfirmed'])) {
         $display = 4;
     }
 }
-
-// This page has displays.
-// $display == 0: User list.
-// $display == 1: Edit user page.
-// $display == 2: Add user confirmation.
-// $display == 3: Delete user confirmation.
-// $display == 4: Message page.
 
 // Include HTML Header.
 require_once('html.header.inc.php');

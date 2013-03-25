@@ -21,4 +21,11 @@ DEFINE('MINUSERNAMELENGTH', 6);
 DEFINE('MAXUSERNAMELENGTH', 16);
 DEFINE('USERNAMEFORMAT', '/^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$/');
 DEFINE('PASSWORDFORMAT', '/(?=.*[A-Z]+)(?=.*[a-z]+)(?=.*\d+)(?=.*[!@#$%^&\*()]+)/');
+
+// Define whether Site ID is used and what the site's ID is.
+DEFINE('SINGLESITE', true);
+DEFINE('SITEID', 1);
+
+// Define Lead Constants
+DEFINE('MAXBUYS', 5);
 ?>

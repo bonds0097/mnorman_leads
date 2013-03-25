@@ -6,6 +6,8 @@
  * @date 03/12/2013
  */
 
+// TODO: Add 'active' flag.
+
 /**
  * User class for app, contains all methods and members related to users.
  *
@@ -78,7 +80,13 @@ class User {
             $autoLoginCookie = $_COOKIE['mnLeadsAutoLogin'];
 
             // Find if there is a match in table.
-            $sql = "SELECT COUNT(*) as count FROM user WHERE autologin = :autologin;";
+            $sql = 'SELECT COUNT(*) as count FROM user WHERE autologin = :autologin ';
+            
+            // Filter by Site ID if needed.
+            if (SINGLESITE) {
+                $sql .= 'AND siteID = ' . SITEID . ' ';
+            }
+            
             $params = array(':autologin' => $autoLoginCookie);
             $query = query($sql, $params);
             $result = fetch($query);
@@ -129,7 +137,7 @@ class User {
         // Check if user exists.
         if (!User::UserExists($username)) {
             throw new UserDoesNotExistException('Call to ManualLogin() failed: ' . $username . ' does 
-                not exist in database.');
+                not exist in database or has the wrong siteID.');
         }
         
         // Check if password matches database.
@@ -344,7 +352,13 @@ class User {
      * @return boolean true if user already exists, false otherwise.
      */
     public static function UserExists($username) {
-        $sql = "SELECT COUNT(*) as count FROM user WHERE username = :username;";
+        $sql = 'SELECT COUNT(*) as count FROM user WHERE username = :username ';
+        
+        // Filter by Site ID if needed.
+        if (SINGLESITE) {
+            $sql .= 'AND siteID = ' . SITEID . ' ';
+        }
+        
         $params = array(':username' => $username); 
         $result = query($sql, $params);
         $userExists = $result->fetchColumn();
@@ -527,17 +541,57 @@ class User {
      * @return Array of User objects.
      */
     public static function GetAllUsers($sortType = 'username') {
-        $sql = 'SELECT user, username, balance, siteID, admin FROM user';
+        $sql = 'SELECT user, username, balance, siteID, admin FROM user ';
         
         // Set sorting.
         if ($sortType == 'username') {
-            $sql .= ' ORDER BY username;';
+            $sql .= 'ORDER BY username;';
         }
         
         $result = query($sql);
         $result->setFetchMode(PDO::FETCH_CLASS, 'User');
         
         return $result->fetchAll();
+    }
+    
+    /**
+     * Deducts $cost from the user's balance.
+     * 
+     * @param double $cost is initialized and >= 0.
+     * @return boolean true if balance was successfully updated in database.
+     * @throws InvalidArgumentException if $cost is not a float.
+     * @throws InvalidCostException if $cost < 0.
+     */
+    public function deductBalance($cost) {
+        // Make sure $cost is a number.
+        if (!filter_var($cost, FILTER_VALIDATE_FLOAT)) {
+            throw new InvalidArgumentException('Call to deductBalance() failed: ' . $cost . ' is not 
+                of type double.');
+        }
+        
+        // Make sure $cost >= zero.
+        if ($cost < 0) {
+            throw new InvalidCostException('Call to deductBalance() failed: ' . $cost . ' is not 
+                greater than or equal to zero.');
+        }
+        
+        // Make sure user has enough money.
+        if ($cost > $this->balance) {
+            throw new InsufficientBalanceException('Call to deductBalance() failed: insufficient 
+                balance.');
+        }
+        
+        // Update user's balance in object.
+        $this->balance -= $cost;
+        
+        // Update user's balance in database.
+        $sql = 'UPDATE user SET balance = :balance WHERE user = :user;';
+        $params = array(
+            ':balance'  => $this->balance,
+            ':user'     => $this->user
+        );      
+        
+        return query($sql, $params);
     }
 
     /**

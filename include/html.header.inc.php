@@ -11,7 +11,10 @@
     <body>
         <?php if(basename($_SERVER['PHP_SELF']) != 'index.php') { ?>
         <nav>
-            <p>You are logged in as <b><?php echo $_SESSION['user']->getUsername() ?></b></p>
+            <p>
+                You are logged in as <b><?php echo $_SESSION['user']->getUsername() ?></b>.<br />
+                Your available balance is <b><?php echo $_SESSION['user']->getBalance() ?></b> points.
+            </p>
             <ul>
                 <?php if($_SESSION['user']->getAdmin()) { ?>
                 <li><a href="<?php echo ROOTURI ?>/user/admin.php">Admin Page</a></li>
