@@ -6,8 +6,6 @@
  * @date 03/12/2013
  */
 
-// TODO: Add 'active' flag.
-
 /**
  * User class for app, contains all methods and members related to users.
  *
@@ -21,6 +19,7 @@ class User {
     private $balance;       /**< Points balance of user. */
     private $siteID;        /**< Site ID of user. */
     private $admin;         /**< Whether user is admin. */
+    private $active;        /**< Whether use is active. */
 
     /**
      * Getter for userID.
@@ -68,6 +67,15 @@ class User {
     }
     
     /**
+     * Getter for user's active status.
+     * 
+     * @return boolean active status.
+     */
+    public function getActive() {
+        return $this->active;
+    }
+        
+    /**
      * Attempts to automatically login a user.
      * 
      * Searches user table for matching autologin string and logs in that user if match was found.
@@ -80,7 +88,9 @@ class User {
             $autoLoginCookie = $_COOKIE['mnLeadsAutoLogin'];
 
             // Find if there is a match in table.
-            $sql = 'SELECT COUNT(*) as count FROM user WHERE autologin = :autologin ';
+            $sql = 'SELECT COUNT(*) as count FROM user 
+                WHERE autologin = :autologin
+                AND active = 1 ';
             
             // Filter by Site ID if needed.
             if (SINGLESITE) {
@@ -144,6 +154,12 @@ class User {
         if (User::CheckPassword($username, $password)) {
             // Get user from database.
             $user = User::GetUserObj($username, 'username');
+            
+            // Make sure user account is active.
+            if (!$user->getActive()) {
+                throw new InactiveUserException('Call to ManualLogin() failed: ' . $username . '\'s 
+                    account is inactive.');
+            }
 
             // Login user.
             if (User::login($user, $autologin)) {
@@ -514,7 +530,7 @@ class User {
      * @return User object where $parameterType == $parameter.
      */
     public static function GetUserObj($parameter, $parameterType = 'username') {
-        $sql = 'SELECT user, username, balance, siteID, admin FROM user '; 
+        $sql = 'SELECT user, username, balance, siteID, admin, active FROM user '; 
         $params = array(':parameter' => $parameter);
              
         switch ($parameterType) {
@@ -541,7 +557,7 @@ class User {
      * @return Array of User objects.
      */
     public static function GetAllUsers($sortType = 'username') {
-        $sql = 'SELECT user, username, balance, siteID, admin FROM user ';
+        $sql = 'SELECT user, username, balance, siteID, admin, active FROM user ';
         
         // Set sorting.
         if ($sortType == 'username') {
