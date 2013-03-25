@@ -561,6 +561,7 @@ class User {
      * @return boolean true if balance was successfully updated in database.
      * @throws InvalidArgumentException if $cost is not a float.
      * @throws InvalidCostException if $cost < 0.
+     * @throws InsufficientBalanceException if $cost > user's balance.
      */
     public function deductBalance($cost) {
         // Make sure $cost is a number.

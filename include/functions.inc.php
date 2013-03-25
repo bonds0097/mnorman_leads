@@ -15,6 +15,12 @@ function classAutoloader($class) {
     include ROOTPATH . '/include/classLibrary/' . $class . '.class.php';
 }
 
+/**
+ * Adds message to session for later display.
+ * 
+ * @param string $type CSS class that message will encode to.
+ * @param string $message message string
+ */
 function message($type, $message){
 
 	$type = strtolower($type);
@@ -22,6 +28,12 @@ function message($type, $message){
 	$_SESSION['messages'][] = '<div class="'.$type.'">'.$message.'</div>';
 }
 
+/**
+ * Formats messages for display.
+ * 
+ * @param string $message message or array of messages
+ * @return string formatted messages.
+ */
 function formatMessages($message = 0){
 
 	if (($message == 0) && (isset($_SESSION['messages']))) {		

@@ -6,6 +6,11 @@
  * @date 03/24/2013
  */
 
+/**
+ * Displays all leads purchased by logged in user.
+ * 
+ * @return string $html that contains table of purchased leads.
+ */
 function displayBoughtLeadsTable() {
     // Get all leads for logged in user.
     $leads = Lead::getBoughtLeadsForUser();
