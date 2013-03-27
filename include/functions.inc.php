@@ -52,4 +52,16 @@ function formatMessages($message = 0){
             }
 	}
 }
+
+function logError(Exception $e, $loggedIn = true) {
+    if ($loggedIn) {
+        error_log('[' . __FILE__ . '][' . __LINE__ . ']: User ' . $_SESSION['user']->getUser() . ' at ' . 
+                $_SERVER['REMOTE_ADDR'] . ' triggered the following exception:\n' . 
+                $e->getMessage() . '\nTrace:\n' . $e->getTraceAsString());
+    } else {
+        error_log('[' . __FILE__ . '][' . __LINE__ . ']: Unknown User at ' . $_SERVER['REMOTE_ADDR']
+                . ' triggered the following exception:\n' . $e->getMessage() . '\nTrace:\n' . 
+                $e->getTraceAsString());
+    }
+}
 ?>

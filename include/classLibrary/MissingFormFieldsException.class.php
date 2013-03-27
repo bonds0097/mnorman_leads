@@ -12,7 +12,7 @@
  * @author Alfredo Ramirez
  * @version 1.0 3/13/2013
  */
-class MissingFormFieldsException extends UnExpectedValueException {
+class MissingFormFieldsException extends UnexpectedValueException {
     //put your code here
 }
 

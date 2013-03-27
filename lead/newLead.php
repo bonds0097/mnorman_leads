@@ -32,11 +32,21 @@ if (isset($_POST['hideLead'])) {
     leadToSession($_POST['selectedLead'], 'buyLead');
     
     // Confirm the user can afford all the leads.
-    if (confirmCanBuy()) {
-        $display = 2;
-    } else {
-        throw new InsufficientBalanceException('User cannot buy selected leads: insufficient 
-            balance.');
+    try {
+        if (confirmCanBuy()) {
+            $display = 2;
+        } else {
+            throw new InsufficientBalanceException('User cannot buy selected leads: insufficient 
+                balance.');
+        }
+    } catch (InsufficientBalanceException $e) {
+        message('error', 'You do not have enough points in your balance to purchase the selected 
+            leads. Please try again.');
+        logError($e);
+    } catch (Exception $e) {
+        message('error', 'An unspecified error occured. Please contact the System Administrator if 
+            it persists.');
+        logError($e);
     }
 }
 

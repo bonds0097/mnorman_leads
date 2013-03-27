@@ -5,7 +5,6 @@
  * @date 03/16/2013
  * @brief Admin page for site. Allows admins to modify users.
  */
-// TODO: Add Exception Handling for all transactions.
 // TODO: Add check for out of range user ID for editUser.
 // TODO: Add ability to toggle users as active/inactive.
 
@@ -41,13 +40,45 @@ if (isset($_GET['editUser'])) {
 // Check whether new user was submitted.
 // If so, validate data and store in session.
 if (isset($_POST['addUser'])) {
-    if (validateUserForm(true)) {
-        $_SESSION['addUser']['username'] = $_POST['username'];
-        $_SESSION['addUser']['password'] = $_POST['password'];
-        $_SESSION['addUser']['balance'] = $_POST['balance'];
-        $_SESSION['addUser']['siteID'] = $_POST['siteID'];
-        $_SESSION['addUser']['admin'] = $_POST['admin'];
-        $display = 2;        
+    $display = 4;
+    // Try to validate user's form and handle all exceptions.
+    try {
+        if (validateUserForm(true)) {
+            $_SESSION['addUser']['username'] = $_POST['username'];
+            $_SESSION['addUser']['password'] = $_POST['password'];
+            $_SESSION['addUser']['balance'] = $_POST['balance'];
+            $_SESSION['addUser']['siteID'] = $_POST['siteID'];
+            $_SESSION['addUser']['admin'] = $_POST['admin'];
+            $display = 2;        
+        } else {
+            throw new RuntimeException('Unspecified error caused validateUserForm() to return 
+                false.');
+        }
+    } catch (MissingFormFieldsException $e) {
+        message('error', 'Form was submitted with missing fields. Please fill out all fields and 
+            try again.');
+        logError($e);
+    } catch (UserAlreadyExistsException $e) {
+        message('error', 'The username you are trying to add already exists in the system. Please 
+            try again.');
+        logError($e);
+    } catch (InvalidPasswordException $e) {
+        message('error', 'The password you entered is not valid. Passwords must contain at least 
+            one lowercase and one uppercase letter, one number and one special character 
+            (!@#$%^&*()_+-=). Please try again.');
+        logError($e);
+    } catch (InvalidArgumentException $e) {
+        message('error', 'You entered a field of the wrong type somehow. Please try again.');
+        logError($e);
+    } catch (InvalidUsernameException $e) {
+        message('error', 'The username you entered is not valid. Usernames must consist of only 
+            alphanumeric characters and the underscore character. Usernames must begin with a 
+            letter. Please try again.');
+        logError($e);      
+    } catch (Exception $e) {
+        message('error', 'Unspecified error occured. Please contact the System Administrator if 
+            this problems persists.');
+        logError($e);    
     }
 }
 
@@ -61,36 +92,96 @@ if (isset($_GET['deleteUser'])) {
 // Check whether user was edited.
 // If so, validate form and make changes or request resubmit.
 if (isset($_POST['editUser'])) {
-    if (validateUserForm(false)) {
-        if ($_SESSION['editUser']->update($_POST['username'], $_POST['balance'], $_POST['siteID'], 
-                $_POST['admin'])) {
-            message('success', $_SESSION['editUser']->getUsername() . ' was successfully updated.');
-            unset($_SESSION['editUser']);
-            $display = 4;           
-        } 
+    $display = 4;
+    try {  
+       if (validateUserForm(false)) {
+            if ($_SESSION['editUser']->update($_POST['username'], $_POST['balance'], $_POST['siteID'], 
+                    $_POST['admin'])) {
+                message('success', $_SESSION['editUser']->getUsername() . ' was successfully updated.');
+                unset($_SESSION['editUser']);   
+                $display = 4;
+            } else {
+                throw new RuntimeException('Unspecified error caused User::Update() to return 
+                    false.');
+            }
+        } else {
+
+        }
+    } catch (MissingFormFieldsException $e) {
+        message('error', 'Form was submitted with missing fields. Please fill out all fields and 
+            try again.');
+        logError($e);
+    } catch (InvalidArgumentException $e) {
+        message('error', 'You entered a field of the wrong type somehow. Please try again.');
+        logError($e);
+    } catch (InvalidUsernameException $e) {
+        message('error', 'The username you entered is not valid. Usernames must consist of only 
+            alphanumeric characters and the underscore character. Usernames must begin with a 
+            letter. Please try again.');
+        logError($e);      
+    } catch (Exception $e) {
+        message('error', 'Unspecified error occured. Please contact the System Administrator if 
+            this problems persists.');
+        logError($e);    
     }
 }
 
 // Check whether use was added.
 // If so, make change.
 if (isset($_POST['addUserConfirmed'])) {
-    if(User::NewUser($_SESSION['addUser']['username'], $_SESSION['addUser']['password'], 
-            $_SESSION['addUser']['balance'], $_SESSION['addUser']['siteID'], 
-            $_SESSION['addUser']['admin'])) {
-        message('success', 'New user successfully added.');
-        unset($_SESSION['addUser']);
-        $display = 4;
+    $display = 4;
+    try {
+        if(User::NewUser($_SESSION['addUser']['username'], $_SESSION['addUser']['password'], 
+                $_SESSION['addUser']['balance'], $_SESSION['addUser']['siteID'], 
+                $_SESSION['addUser']['admin'])) {
+            message('success', 'New user successfully added.');
+            unset($_SESSION['addUser']);
+            $display = 4;
+        } else {
+            throw new RuntimeException('Unspecified error caused User::NewUser() to return 
+                false.');
+        }
+    } catch (UserAlreadyExistsException $e) {
+        message('error', 'The username you are trying to add already exists in the system. Please 
+            try again.');
+        logError($e);
+    } catch (InvalidPasswordException $e) {
+        message('error', 'The password you entered is not valid. Passwords must contain at least 
+            one lowercase and one uppercase letter, one number and one special character 
+            (!@#$%^&*()_+-=). Please try again.');
+        logError($e);
+    } catch (InvalidArgumentException $e) {
+        message('error', 'You entered a field of the wrong type somehow. Please try again.');
+        logError($e);
+    } catch (InvalidUsernameException $e) {
+        message('error', 'The username you entered is not valid. Usernames must consist of only 
+            alphanumeric characters and the underscore character. Usernames must begin with a 
+            letter. Please try again.');
+        logError($e);      
+    } catch (Exception $e) {
+        message('error', 'Unspecified error occured. New user was not added. 
+            Please contact the System Administrator if this problems persists.');
+        logError($e);
     }
 }
 
 // Check whether use was deleted.
 // If so, make change.
 if (isset($_POST['deleteUserConfirmed'])) {
-    if ($_SESSION['deleteUser']->delete()) {
-        message('succes', $_SESSION['deleteUser']->getUsername() . ' was removed from the 
-            database.');
-        unset($_SESSION['deleteUser']);
-        $display = 4;
+    try {
+        if ($_SESSION['deleteUser']->delete()) {
+            message('succes', $_SESSION['deleteUser']->getUsername() . ' was removed from the 
+                database.');
+            unset($_SESSION['deleteUser']);
+            $display = 4;
+        } else {
+            throw new RuntimeException('Unspecified error caused User::delete() to return 
+                false.');
+        }
+    } catch (Exception $e) {
+        message('error', 'Unspecified error occured. User was not deleted. 
+            Please contact the System Administrator if this problems persists.');
+        logError($e);
     }
 }
 

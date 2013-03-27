@@ -5,7 +5,6 @@
  * @author Alfredo Ramirez
  * @date 03/16/2013
  */
-// TODO: Add Exception Handling.
 // TODO: Add userID validation.
 
 // Include PHP Header.
@@ -17,10 +16,24 @@ $display = 0;
 
 // Change user password if requested.
 if (isset($_POST['changePassword'])) {
-    if ($_SESSION['passwordChangeUser']->setPassword($_POST['newPassword1'], $_POST['newPassword2'])) {
-        message('success', $_SESSION['passwordChangeUser']->getUsername() . '\'s password was 
-            successfully changed.');
-        unset($_SESSION['passwordChangeUser']);
+    try {
+        if ($_SESSION['passwordChangeUser']->setPassword($_POST['newPassword1'], $_POST['newPassword2'])) {
+            message('success', $_SESSION['passwordChangeUser']->getUsername() . '\'s password was 
+                successfully changed.');
+            unset($_SESSION['passwordChangeUser']);
+        }
+    } catch (PasswordsDontMatchException $e) {
+        message('error', 'The two passwords you entered did not match. Please re-enter them 
+            carefully and try again.');
+    } catch (InvalidPasswordException $e) {
+        message('error', 'The password you entered is not valid. Passwords must contain at least 
+            one lowercase and one uppercase letter, one number and one special character 
+            (!@#$%^&*()_+-=). Please try again.');
+        logError($e);
+    } catch (Exception $e) {
+        message('error', 'Unspecified error occured. User\'s password was not changed. 
+            Please contact the System Administrator if this problems persists.');
+        logError($e);
     }
 } else {
     // Check if admin rights are needed for password change.

@@ -5,8 +5,6 @@
  * @author Alfredo Ramirez
  * @date 03/12/2013
  */
-// TODO: Add Exception Handling for all logins.
-
 // Include PHP Header.
 require_once('php.header.inc.php');
 
@@ -38,9 +36,35 @@ if (isset($_POST['login'])) {
         $autologin = true;
     } 
     
-    if (User::ManualLogin($_POST['username'], $_POST['password'], $autologin)) {
-        $loggedIn = true;
-    }
+    // Try to log user in and handle all exceptions.
+    try {
+        if (User::ManualLogin($_POST['username'], $_POST['password'], $autologin)) {
+            $loggedIn = true;
+        } else {
+            throw new RuntimeException('Unspecified error caused User::ManualLogin() to return 
+                false.');
+        }
+    } catch (InvalidUsernameException $e) {
+        message('error', 'Invalid/Wrong username or password. Please try again.');
+        logError($e, false);
+    } catch (InvalidPasswordException $e) {
+        message('error', 'Invalid/Wrong username or password. Please try again.');
+        logError($e, false);
+    } catch (UserDoesNotExistException $e) {
+        message('error', 'Invalid/Wrong username or password. Please try again.');
+        logError($e, false);
+    } catch (InactiveUserException $e) {
+        message('error', 'Your account has been deactivated. Please contact the System Administrator 
+            for further information.');
+        logError($e, false);
+    } catch (IncorrectPasswordException $e) {
+        message('error', 'Invalid/Wrong username or password. Please try again.');
+        logError($e, false);
+    } catch (Exception $e) {
+        message('error', 'Unspecified error occured. Please contact the System Administrator if this
+            error persists.');
+        logError($e, false);
+    } 
 }
 
 // Check for aready logged in.

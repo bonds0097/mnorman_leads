@@ -128,6 +128,7 @@ class User {
      * @throws InvalidUsernameException if username is too long or contains invalid characters.
      * @throws InvalidPasswordException if password is too long or contains invalid characters.
      * @throws UserDoesNotExistException if no user with $username is in database.
+     * @throws InactiveUserException if user account is not active.
      * @throws IncorrectPasswordException if check fails.
      * @return true if successful, false otherwise
      */
