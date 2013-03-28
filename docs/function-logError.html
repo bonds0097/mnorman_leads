@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="generator" content="ApiGen 2.8.0" />
 
-	<title>Function leadToSession | Michael Norman - Leads App</title>
+	<title>Function logError | Michael Norman - Leads App</title>
 
 	<script type="text/javascript" src="resources/combined.js?1889508232"></script>
 	<script type="text/javascript" src="elementlist.js?2259802359"></script>
@@ -68,8 +68,8 @@
 				<li><a href="function-fetch.html">fetch</a></li>
 				<li><a href="function-formatMessages.html">formatMessages</a></li>
 				<li><a href="function-hideConfirmedLead.html">hideConfirmedLead</a></li>
-				<li class="active"><a href="function-leadToSession.html">leadToSession</a></li>
-				<li><a href="function-logError.html">logError</a></li>
+				<li><a href="function-leadToSession.html">leadToSession</a></li>
+				<li class="active"><a href="function-logError.html">logError</a></li>
 				<li><a href="function-message.html">message</a></li>
 				<li><a href="function-query.html">query</a></li>
 				<li><a href="function-validateUserForm.html">validateUserForm</a></li>
@@ -113,12 +113,13 @@
 	</div>
 
 <div id="content" class="function">
-	<h1>Function leadToSession</h1>
+	<h1>Function logError</h1>
 
 
 	<div class="description">
 	
-<p>Loads leads into Session.</p>
+<p>Logs errors in the Server Error Log with a detailed message including the
+Exception's own message.</p>
 
 	</div>
 
@@ -127,24 +128,24 @@
 		
 				<b>Author:</b>
 				Alfredo Ramirez<br />
-		<b>Located at</b> <a href="source-function-leadToSession.html#55-71" title="Go to source code">lead/include/newLead.functions.inc.php</a><br />
+		<b>Located at</b> <a href="source-function-logError.html#56-72" title="Go to source code">include/functions.inc.php</a><br />
 	</div>
 
 
 	<table class="summary" id="parameters">
 	<caption>Parameters summary</caption>
-	<tr id="$leadArray">
-		<td class="name"><code>array</code></td>
-		<td class="value"><code><var>$leadArray</var></code></td>
+	<tr id="$e">
+		<td class="name"><code><code><a href="class-Exception.html">Exception</a></code></code></td>
+		<td class="value"><code><var>$e</var></code></td>
 		<td>
-			 is initialized with integers.
+			
 		</td>
 	</tr>
-	<tr id="$sessionArray">
-		<td class="name"><code>string</code></td>
-		<td class="value"><code><var>$sessionArray</var></code></td>
+	<tr id="$loggedIn">
+		<td class="name"><code>boolean</code></td>
+		<td class="value"><code><var>$loggedIn</var> = <span class="php-keyword1">true</span></code></td>
 		<td>
-			 is initialized.
+			
 		</td>
 	</tr>
 	</table>

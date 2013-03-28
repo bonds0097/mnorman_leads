@@ -43,7 +43,7 @@ function formatMessages($message = 0){
 	if (is_array($message)) {
             $message = array_unique($message);
             $html = '<div>';
-            foreach ($message as $key => $value) {
+            foreach ($message as $value) {
                     $html = $html.$value;
             }
             $html = $html.'</div>';
@@ -53,6 +53,12 @@ function formatMessages($message = 0){
 	}
 }
 
+/**
+ * Logs errors in the Server Error Log with a detailed message including the Exception's own message.
+ * 
+ * @param Exception $e
+ * @param boolean $loggedIn
+ */
 function logError(Exception $e, $loggedIn = true) {
     if ($loggedIn) {
         error_log('[' . __FILE__ . '][' . __LINE__ . ']: User ' . $_SESSION['user']->getUser() . ' at ' . 

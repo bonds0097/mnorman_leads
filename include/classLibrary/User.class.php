@@ -182,11 +182,11 @@ class User {
      *
      * @see AutoLogin()
      * @see ManualLogin()
-     * @param $username is an initialized User object.
-     * @param $autologin indicates whether user should be autologged in in the future.
+     * @param User $user is an initialized User object.
+     * @param boolean $autologin indicates whether user should be autologged in in the future.
      * @return true if login successful, false otherwise.
      */
-    public static function Login($user, $autologin = false) {
+    public static function Login(User $user, $autologin = false) {
         // Start Session
         session_regenerate_id(true);
         
@@ -259,13 +259,13 @@ class User {
      *
      * Method to allow administrators to create new users and insert them into database.
      *
-     * @see User::ValidateAllUserFields()
-     * @param $username is an initialized string.
-     * @param $password is an initialized string.
-     * @param $balance is an initialized decimal.
-     * @param $siteID is an initialized integer.
-     * @param $admin is an initialized boolean.     
-     * @return true if successful, false otherwise.
+     * @see ValidateAllUserFields()
+     * @param string $username is an initialized string.
+     * @param string $password is an initialized string.
+     * @param double $balance is an initialized decimal.
+     * @param int $siteID is an initialized integer.
+     * @param boolean $admin is an initialized boolean.     
+     * @return boolean true if successful, false otherwise.
      */
     public static function NewUser($username, $password, $balance, $siteID, $admin) {
         // Validate data.

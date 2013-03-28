@@ -7,7 +7,7 @@
 	<title>Class MissingFormFieldsException | Michael Norman - Leads App</title>
 
 	<script type="text/javascript" src="resources/combined.js?1889508232"></script>
-	<script type="text/javascript" src="elementlist.js?1017452945"></script>
+	<script type="text/javascript" src="elementlist.js?2259802359"></script>
 	<link rel="stylesheet" type="text/css" media="all" href="resources/style.css?3505392360" />
 
 </head>
@@ -35,7 +35,6 @@
 			<h3>Classes</h3>
 			<ul>
 				<li><a href="class-Lead.html">Lead</a></li>
-				<li class="active"><a href="class-MissingFormFieldsException.html">MissingFormFieldsException</a></li>
 				<li><a href="class-User.html">User</a></li>
 			</ul>
 
@@ -43,12 +42,15 @@
 
 			<h3>Exceptions</h3>
 			<ul>
+				<li><a href="class-InactiveUserException.html">InactiveUserException</a></li>
 				<li><a href="class-IncorrectPasswordException.html">IncorrectPasswordException</a></li>
 				<li><a href="class-InsufficientBalanceException.html">InsufficientBalanceException</a></li>
 				<li><a href="class-InvalidCostException.html">InvalidCostException</a></li>
 				<li><a href="class-InvalidPasswordException.html">InvalidPasswordException</a></li>
 				<li><a href="class-InvalidUsernameException.html">InvalidUsernameException</a></li>
 				<li><a href="class-MaxBuysExceededException.html">MaxBuysExceededException</a></li>
+				<li class="active"><a href="class-MissingFormFieldsException.html">MissingFormFieldsException</a></li>
+				<li><a href="class-PasswordsDontMatchException.html">PasswordsDontMatchException</a></li>
 				<li><a href="class-UserAlreadyExistsException.html">UserAlreadyExistsException</a></li>
 				<li><a href="class-UserDoesNotExistException.html">UserDoesNotExistException</a></li>
 			</ul>
@@ -67,6 +69,7 @@
 				<li><a href="function-formatMessages.html">formatMessages</a></li>
 				<li><a href="function-hideConfirmedLead.html">hideConfirmedLead</a></li>
 				<li><a href="function-leadToSession.html">leadToSession</a></li>
+				<li><a href="function-logError.html">logError</a></li>
 				<li><a href="function-message.html">message</a></li>
 				<li><a href="function-query.html">query</a></li>
 				<li><a href="function-validateUserForm.html">validateUserForm</a></li>
@@ -101,6 +104,9 @@
 			<li>
 				<a href="tree.html" title="Tree view of classes, interfaces, traits and exceptions"><span>Tree</span></a>
 			</li>
+			<li>
+				<a href="todo.html" title="Todo list"><span>Todo</span></a>
+			</li>
 		</ul>
 		<ul>
 		</ul>
@@ -119,11 +125,26 @@ form field.</p>
 
 	<dl class="tree">
 		<dd style="padding-left:0px">
-UnExpectedValueException
+			<a href="class-Exception.html"><span>Exception</span></a>
+			
 			
 			
 		</dd>
 		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-RuntimeException.html"><span>RuntimeException</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:60px">
+			<img src="resources/inherit.png" alt="Extended by" />
+			<a href="class-UnexpectedValueException.html"><span>UnexpectedValueException</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:90px">
 			<img src="resources/inherit.png" alt="Extended by" />
 <b><span>MissingFormFieldsException</span></b>			
 			
@@ -154,6 +175,22 @@ UnExpectedValueException
 
 
 
+	<table class="summary inherited">
+	<caption>Methods inherited from <a href="class-Exception.html#methods">Exception</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Exception.html#___construct">__construct()</a>, 
+			<a href="class-Exception.html#___toString">__toString()</a>, 
+			<a href="class-Exception.html#_getCode">getCode()</a>, 
+			<a href="class-Exception.html#_getFile">getFile()</a>, 
+			<a href="class-Exception.html#_getLine">getLine()</a>, 
+			<a href="class-Exception.html#_getMessage">getMessage()</a>, 
+			<a href="class-Exception.html#_getPrevious">getPrevious()</a>, 
+			<a href="class-Exception.html#_getTrace">getTrace()</a>, 
+			<a href="class-Exception.html#_getTraceAsString">getTraceAsString()</a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
@@ -166,6 +203,17 @@ UnExpectedValueException
 
 
 
+	<table class="summary inherited">
+	<caption>Properties inherited from <a href="class-Exception.html#properties">Exception</a></caption>
+	<tr>
+		<td><code>
+			<a href="class-Exception.html#$code"><var>$code</var></a>, 
+			<a href="class-Exception.html#$file"><var>$file</var></a>, 
+			<a href="class-Exception.html#$line"><var>$line</var></a>, 
+			<a href="class-Exception.html#$message"><var>$message</var></a>
+		</code></td>
+	</tr>
+	</table>
 
 
 
